@@ -8,8 +8,6 @@ import java.util.Optional;
 public class RPFlag extends Flag<Boolean> {
     public RPFlag(String name, Boolean defValue, boolean isAdmin) {
         super(name, defValue, isAdmin);
-
-        RP_API.addFlag(name, defValue, isAdmin);
     }
 
     @Override

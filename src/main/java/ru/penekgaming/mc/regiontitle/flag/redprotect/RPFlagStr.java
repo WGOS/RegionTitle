@@ -8,11 +8,6 @@ import java.util.Optional;
 public class RPFlagStr extends Flag<String> {
     public RPFlagStr(String name, String defValue, boolean isAdmin) {
         super(name, defValue, isAdmin);
-
-        if (isAdmin)
-            RP_API.addAdminFlag(name);
-        else
-            RP_API.addPlayerFlag(name, defValue);
     }
 
     @Override

@@ -1,14 +1,14 @@
 package ru.penekgaming.mc.regiontitle.flag;
 
-import br.net.fabiozumbi12.RedProtect.Sponge.API.RedProtectAPI;
-import br.net.fabiozumbi12.RedProtect.Sponge.RedProtect;
 import br.net.fabiozumbi12.RedProtect.Sponge.Region;
 import org.spongepowered.api.event.cause.Cause;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public abstract class Flag<T> {
-    protected static final RedProtectAPI RP_API = RedProtect.get().getAPI();
+    private static final List<Flag<?>> FLAGS = new ArrayList<>();
 
     private final String name;
     private final T defValue;
@@ -18,6 +18,8 @@ public abstract class Flag<T> {
         this.name = name;
         this.defValue = defValue;
         this.isAdmin = isAdmin;
+
+        FLAGS.add(this);
     }
 
     public abstract Optional<T> getValue(Region region);
@@ -36,5 +38,9 @@ public abstract class Flag<T> {
 
     public boolean isAdmin() {
         return isAdmin;
+    }
+
+    public static List<Flag<?>> getFlags() {
+        return FLAGS;
     }
 }
