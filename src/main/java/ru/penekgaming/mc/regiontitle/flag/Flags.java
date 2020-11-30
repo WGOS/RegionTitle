@@ -4,6 +4,10 @@ import ru.penekgaming.mc.regiontitle.flag.redprotect.RPFlagInt;
 import ru.penekgaming.mc.regiontitle.flag.redprotect.RPFlagStr;
 
 public class Flags {
+    /*
+    * All flags are RPFlag for now
+    * Probably should be changed to Flag type for compatibility over different plugins
+    * */
     public static final RPFlagInt TITLE_FADE_IN_TICKS = new RPFlagInt("title-fade-in-ticks", 10, true);
     public static final RPFlagInt TITLE_FADE_OUT_TICKS = new RPFlagInt("title-fade-out-ticks", 10, true);
     public static final RPFlagInt TITLE_STAY_TICKS = new RPFlagInt("title-stay-ticks", 40, true);
