@@ -10,16 +10,14 @@ targetCompatibility = '1.8'
 
 repositories {
     maven { url "https://raw.githubusercontent.com/FabioZumbi12/RedProtect/mvn-repo/" }
-    maven { url "https://maven.enginehub.org/repo/" }
-    maven { url "http://repo.mikeprimm.com" }
 }
 
 dependencies {
     compileOnly 'org.spongepowered:spongeapi:7.3.0'
     annotationProcessor 'org.spongepowered:spongeapi:7.3.0'
 
-    compile group: 'br.net.fabiozumbi12.RedProtect', name: 'RedProtect-Core', version: '7.7.2'
-    compile group: 'br.net.fabiozumbi12.RedProtect', name: 'RedProtect-Sponge-7', version: '7.7.2'
+    implementation group: 'br.net.fabiozumbi12.RedProtect', name: 'RedProtect-Core', version: '7.7.2'
+    implementation group: 'br.net.fabiozumbi12.RedProtect', name: 'RedProtect-Sponge-7', version: '7.7.2'
 }
 
 sponge.plugin.id = 'regiontitle'
