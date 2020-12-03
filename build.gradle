@@ -9,7 +9,7 @@ sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
 repositories {
-    maven { url "https://raw.githubusercontent.com/FabioZumbi12/RedProtect/mvn-repo/" }
+    maven { url 'https://raw.githubusercontent.com/FabioZumbi12/RedProtect/mvn-repo/' }
     maven { url 'https://jitpack.io' }
     flatDir { dirs "libs" }
 }
@@ -19,7 +19,10 @@ dependencies {
     annotationProcessor 'org.spongepowered:spongeapi:7.3.0'
 
     implementation group: 'br.net.fabiozumbi12.RedProtect', name: 'RedProtect-Core', version: '7.7.2'
-    implementation group: 'br.net.fabiozumbi12.RedProtect', name: 'RedProtect-Sponge-7', version: '7.7.2'
+    implementation (group: 'br.net.fabiozumbi12.RedProtect', name: 'RedProtect-Sponge-7', version: '7.7.2') {
+        exclude group: 'org.dynmap'
+        exclude group: 'com.sk89q.worldedit'
+    }
 
     implementation 'com.github.bloodmc:GriefDefender:master-SNAPSHOT'
     implementation 'com.github.bloodmc:GriefDefenderAPI:master-SNAPSHOT'
