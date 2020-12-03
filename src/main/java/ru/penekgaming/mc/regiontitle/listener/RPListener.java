@@ -18,13 +18,20 @@ import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.text.title.Title;
 import org.spongepowered.api.world.World;
 import ru.penekgaming.mc.regiontitle.flag.Flags;
+import ru.penekgaming.mc.regiontitle.region.RegionProvider;
 
-import java.util.Optional;
 import java.util.UUID;
 
-public class PlayerListener {
+public class RPListener {
+    private final Logger logger;
+    private final RegionProvider<Region> regionProvider;
+
+    @SuppressWarnings("unchecked")
     @Inject
-    private Logger logger;
+    public RPListener(Logger logger, RegionProvider<?> regionProvider) {
+        this.logger = logger;
+        this.regionProvider = (RegionProvider<Region>) regionProvider;
+    }
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     @Listener(order = Order.LAST, beforeModifications = true)
@@ -75,18 +82,19 @@ public class PlayerListener {
     }
 
     private void sendTitle(Player player, Region region) {
-        Optional<String> titleString = Flags.TITLE_MAIN.getValue(region);
+        String titleString = regionProvider.getFlagValue(region, Flags.TITLE_ENTER_MAIN);
 
-        if (!titleString.isPresent())
+        if (titleString.equals(Flags.TITLE_ENTER_MAIN.getDefValue()))
             return;
 
         Title.Builder titleBuilder = Title.builder()
-                .title(TextSerializers.FORMATTING_CODE.deserialize(titleString.get()))
-                .fadeIn(Flags.TITLE_FADE_IN_TICKS.getValue(region).orElse(Flags.TITLE_FADE_IN_TICKS.getDefValue()))
-                .fadeOut(Flags.TITLE_FADE_OUT_TICKS.getValue(region).orElse(Flags.TITLE_FADE_OUT_TICKS.getDefValue()))
-                .stay(Flags.TITLE_STAY_TICKS.getValue(region).orElse(Flags.TITLE_STAY_TICKS.getDefValue()));
+                .title(TextSerializers.FORMATTING_CODE.deserialize(titleString))
+                .fadeIn(regionProvider.getFlagValue(region, Flags.TITLE_ENTER_FADE_IN_TICKS))
+                .fadeOut(regionProvider.getFlagValue(region, Flags.TITLE_ENTER_FADE_OUT_TICKS))
+                .stay(regionProvider.getFlagValue(region, Flags.TITLE_ENTER_STAY_TICKS));
 
-        titleBuilder.subtitle(TextSerializers.FORMATTING_CODE.deserialize(Flags.TITLE_SUBTITLE.getValue(region).orElse("")));
+        String subtitle = regionProvider.getFlagValue(region, Flags.TITLE_ENTER_SUBTITLE);
+        titleBuilder.subtitle(TextSerializers.FORMATTING_CODE.deserialize(subtitle.equals(Flags.TITLE_ENTER_SUBTITLE.getDefValue()) ? "" : subtitle));
 
         player.resetTitle();
         player.sendTitle(titleBuilder.build());
@@ -95,8 +103,11 @@ public class PlayerListener {
     }
 
     private void playSound(Player player, Region region) {
-        Flags.ENTER_SOUND.getValue(region).ifPresent(s ->
-                player.playSound(SoundType.of(s), player.getPosition(), 1.0)
-        );
+        String soundName = regionProvider.getFlagValue(region, Flags.ENTER_SOUND);
+
+        if (soundName.equals(Flags.ENTER_SOUND.getDefValue()))
+            return;
+
+        player.playSound(SoundType.of(soundName), player.getPosition(), 2.0);
     }
 }

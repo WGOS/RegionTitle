@@ -1,31 +1,20 @@
 package ru.penekgaming.mc.regiontitle.flag;
 
-import br.net.fabiozumbi12.RedProtect.Sponge.Region;
-import org.spongepowered.api.event.cause.Cause;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-public abstract class Flag<T> {
-    private static final List<Flag<?>> FLAGS = new ArrayList<>();
-
+public class Flag<T> {
     private final String name;
+    private final String description;
     private final T defValue;
     private final boolean isAdmin;
+    private final Class<T> clazz;
 
-    public Flag(String name, T defValue, boolean isAdmin) {
+    public Flag(String name, String description, T defValue, boolean isAdmin, Class<T> clazz) {
         this.name = name;
+        this.description = description;
         this.defValue = defValue;
         this.isAdmin = isAdmin;
+        this.clazz = clazz;
 
-        FLAGS.add(this);
-    }
-
-    public abstract Optional<T> getValue(Region region);
-
-    public void setValue(Cause cause, Region region, T value) {
-        region.setFlag(cause, name, value);
+        Flags.FLAGS.add(this);
     }
 
     public String getName() {
@@ -40,7 +29,11 @@ public abstract class Flag<T> {
         return isAdmin;
     }
 
-    public static List<Flag<?>> getFlags() {
-        return FLAGS;
+    public Class<T> getValueClass() {
+        return clazz;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

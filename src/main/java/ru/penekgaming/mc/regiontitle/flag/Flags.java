@@ -1,28 +1,69 @@
 package ru.penekgaming.mc.regiontitle.flag;
 
-import br.net.fabiozumbi12.RedProtect.Sponge.RedProtect;
-import ru.penekgaming.mc.regiontitle.flag.redprotect.RPFlagInt;
-import ru.penekgaming.mc.regiontitle.flag.redprotect.RPFlagStr;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Flags {
-    /*
-     * All flags are RPFlag for now
-     * Probably should be changed to Flag type for compatibility over different plugins
-     * */
-    public static final RPFlagInt TITLE_FADE_IN_TICKS = new RPFlagInt("title-fade-in-ticks", 10, true);
-    public static final RPFlagInt TITLE_FADE_OUT_TICKS = new RPFlagInt("title-fade-out-ticks", 10, true);
-    public static final RPFlagInt TITLE_STAY_TICKS = new RPFlagInt("title-stay-ticks", 40, true);
-    public static final RPFlagStr TITLE_MAIN = new RPFlagStr("title-main", null, true);
-    public static final RPFlagStr TITLE_SUBTITLE = new RPFlagStr("title-subtitle", null, true);
+    private static final String DEF_STR = "undefined";
 
-    public static final RPFlagStr ENTER_SOUND = new RPFlagStr("enter-sound", null, true);
+    public static final List<Flag<?>> FLAGS = new ArrayList<>();
 
-    public static void registerFlags() {
-        for (Flag<?> flag : Flag.getFlags()) {
-            if (flag.isAdmin())
-                RedProtect.get().getAPI().addAdminFlag(flag.getName());
-            else
-                RedProtect.get().getAPI().addPlayerFlag(flag.getName(), flag.getDefValue());
-        }
-    }
+    public static final Flag<Integer> TITLE_ENTER_FADE_IN_TICKS = new Flag<>(
+            "title-enter-fade-in-ticks",
+            "How many ticks title fades in after enter",
+            10, true, Integer.class);
+
+    public static final Flag<Integer> TITLE_ENTER_FADE_OUT_TICKS = new Flag<>(
+            "title-enter-fade-out-ticks",
+            "How many ticks title fades out after enter",
+            10, true, Integer.class);
+
+    public static final Flag<Integer> TITLE_ENTER_STAY_TICKS = new Flag<>(
+            "title-enter-stay-ticks",
+            "How many ticks title stays after enter",
+            40, true, Integer.class);
+
+    public static final Flag<String> TITLE_ENTER_MAIN = new Flag<>(
+            "title-enter-main",
+            "Title to show on player enter",
+            DEF_STR, true, String.class);
+
+    public static final Flag<String> TITLE_ENTER_SUBTITLE = new Flag<>(
+            "title-enter-subtitle",
+            "Subtitle to show on player enter",
+            DEF_STR, true, String.class);
+
+    public static final Flag<String> ENTER_SOUND = new Flag<>(
+            "enter-sound",
+            "Play sound to player on enter",
+            DEF_STR, true, String.class);
+
+    public static final Flag<Integer> TITLE_EXIT_FADE_IN_TICKS = new Flag<>(
+            "title-exit-fade-in-ticks",
+            "How many ticks title fades in after exit",
+            10, true, Integer.class);
+
+    public static final Flag<Integer> TITLE_EXIT_FADE_OUT_TICKS = new Flag<>(
+            "title-exit-fade-out-ticks",
+            "How many ticks title fades out after exit",
+            10, true, Integer.class);
+
+    public static final Flag<Integer> TITLE_EXIT_STAY_TICKS = new Flag<>(
+            "title-exit-stay-ticks",
+            "How many ticks title stays after exit",
+            40, true, Integer.class);
+    public static final Flag<String> TITLE_EXIT_MAIN = new Flag<>(
+            "title-exit-main",
+            "Title to show on player exit",
+            DEF_STR, true, String.class);
+
+    public static final Flag<String> TITLE_EXIT_SUBTITLE = new Flag<>(
+            "title-exit-subtitle",
+            "Subtitle to show on player exit",
+            DEF_STR, true, String.class);
+
+    public static final Flag<String> EXIT_SOUND = new Flag<>(
+            "exit-sound",
+            "Play sound to player on exit",
+            DEF_STR, true, String.class);
 }

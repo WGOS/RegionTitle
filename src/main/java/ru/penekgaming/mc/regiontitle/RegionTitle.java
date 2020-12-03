@@ -1,16 +1,12 @@
 package ru.penekgaming.mc.regiontitle;
 
-import com.google.inject.*;
+import com.google.inject.Inject;
 import org.slf4j.Logger;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.Order;
-import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
-import ru.penekgaming.mc.regiontitle.flag.Flags;
-import ru.penekgaming.mc.regiontitle.listener.PlayerListener;
 
 @Plugin(
         id = RegionTitle.PLUGIN_ID,
@@ -20,39 +16,26 @@ import ru.penekgaming.mc.regiontitle.listener.PlayerListener;
                 "WGOS"
         },
         dependencies = {
-                @Dependency(id = "redprotect", version = "7.7.2")
+                @Dependency(id = PluginLoader.ID_RED_PROTECT, version = "7.7.2", optional = true),
+                @Dependency(id = PluginLoader.ID_GRIEF_DEFENDER, optional = true)
         }
 )
-public class RegionTitle extends AbstractModule {
+public class RegionTitle {
     public static final String PLUGIN_ID = "regiontitle";
     public static final String PLUGIN_NAME = "RegionTitle";
 
-    private Injector injector;
+    private static RegionTitle instance;
 
     @Inject
     private Logger logger;
 
-    @Listener
-    public void onServerPreInit(GamePreInitializationEvent event) {
-        injector = Guice.createInjector(this);
-
-        Sponge.getEventManager().registerListeners(this, injector.getInstance(PlayerListener.class));
-    }
-
     @Listener(order = Order.POST)
     public void onServerStart(GameStartedServerEvent event) {
-        Flags.registerFlags();
-
-        logger.info("{} is up and running!", PLUGIN_NAME);
+        instance = this;
+        PluginLoader.load(logger);
     }
 
-    @Provides
-    public Logger getLogger() {
-        return logger;
-    }
-
-    @Override
-    protected void configure() {
-
+    public static RegionTitle getInstance() {
+        return instance;
     }
 }
