@@ -1,20 +1,29 @@
 ## Region Title
-Region Title - is a simple plugin that allows you to set greetings title (as well as subtitle) for claimed region
-and also play sound
+Region Title - is a simple plugin for Sponge that allows you to display title, play sound
+to player if player enters or leave region
+
+## Where to download
+* [Sponge Ore](https://ore.spongepowered.org/WGOS/Region-Title/versions)
 
 ## Supported plugins
-At this moment plugin supports only [RedProtect](https://github.com/FabioZumbi12/RedProtect) but this may change in the future
-(actually if I decide to change claiming plugin on my server :D)  
-**Notice that only RedProtect 7.7.2 and above is supported!**
+* [GriefDefender](https://github.com/bloodmc/GriefDefender)
+* [RedProtect](https://github.com/FabioZumbi12/RedProtect) **7.7.2+**
+    * Exit flags not supported yet
 
 ## How to use
 All settings done by flags for claimed region
 
-| Flag                 | Value type | Default value | Description                                                                         |
-|----------------------|------------|---------------|-------------------------------------------------------------------------------------|
-| title-main           | string     | null          | Set title to show to player. Set to false or empty string to disable title at all   |
-| title-subtitle       | string     | null          | Set subtitle for title Set to false or empty string to diable subtitle              |
-| title-fade-in-ticks  | integer    | 10            | Number of ticks for title to fade in                                                |
-| title-fade-out-ticks | integer    | 10            | Number of ticks for title to fade out                                               |
-| title-stay-ticks     | integer    | 40            | How many ticks title will stay on screen before fade out                            |
-| enter-sound          | string     | null          | Play sound when player enters region. Set to flase or empty string to disable sound |
+| Flag                       | Value type | Default value | Description                                    |
+|----------------------------|------------|---------------|------------------------------------------------|
+| title-enter-main           | string     | undefined     | Title to show on enter                         |
+| title-enter-subtitle       | string     | undefined     | Subtitile to show on enter                     |
+| title-enter-fade-in-ticks  | integer    | 10            | Number of ticks for title to fade in on enter  |
+| title-enter-fade-out-ticks | integer    | 10            | Number of ticks for title to fade out on enter |
+| title-enter-stay-ticks     | integer    | 40            | Number of ticks for title to stay on enter     |
+| enter-sound                | string     | undefined     | Play sound for player on enter                 |
+| title-exit-main            | string     | undefined     | Title to show on enter                         |
+| title-exit-subtitle        | string     | undefined     | Subtitile to show on enter                     |
+| title-exit-fade-in-ticks   | integer    | 10            | Number of ticks for title to fade in on enter  |
+| title-exit-fade-out-ticks  | integer    | 10            | Number of ticks for title to fade out on enter |
+| title-exit-stay-ticks      | integer    | 40            | Number of ticks for title to stay on enter     |
+| exit-sound                 | string     | undefined     | Play sound for player on enter                 |
