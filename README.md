@@ -9,7 +9,7 @@ to player if player enters or leave region
 
 ## Supported plugins
 * [GriefDefender](https://github.com/bloodmc/GriefDefender)
-* Please use [this repo](https://github.com/WGOS/GriefDefender) due to String options are not currently available in primary 
+    * Please use [this repo](https://github.com/WGOS/GriefDefender) due to String options are not currently available in primary 
 * [RedProtect](https://github.com/FabioZumbi12/RedProtect) **7.7.2+**
     * Exit flags not supported yet
 
