@@ -2,11 +2,14 @@
 Region Title - is a simple plugin for Sponge that allows you to display title, play sound
 to player if player enters or leave region
 
+![Demonstration](https://i.imgur.com/SkkoqtT.gif)
+
 ## Where to download
 * [Sponge Ore](https://ore.spongepowered.org/WGOS/Region-Title/versions)
 
 ## Supported plugins
 * [GriefDefender](https://github.com/bloodmc/GriefDefender)
+* Please use [this repo](https://github.com/WGOS/GriefDefender) due to String options are not currently available in primary 
 * [RedProtect](https://github.com/FabioZumbi12/RedProtect) **7.7.2+**
     * Exit flags not supported yet
 
