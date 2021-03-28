@@ -1,6 +1,6 @@
 ## Region Title
 Region Title - is a simple plugin for Sponge that allows you to display title, play sound
-to player if player enters or leave region
+to player on enter or leave
 
 ![Demonstration](https://i.imgur.com/SkkoqtT.gif)
 
